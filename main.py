@@ -49,8 +49,8 @@ class WorkingDay :
 		
 #==============================================================
 
-dr_list = list();
-workingDay_list = list();
+dr_list = list()
+workingDay_list = list()
 
 def parseCSV(filename):
 	# here to read the file and do the parsing
@@ -66,8 +66,8 @@ def parseCSV(filename):
 		for dr_id, remaining_pts, s_rule in _dr_list:
 			ward_arr = s_rule.split(',')
 			print(dr_id, remaining_pts, ward_arr)
-
-			dr_list.append(Doctor(dr_id, int(remaining_pts), ward_arr))
+			if dr_id != '':
+				dr_list.append(Doctor(dr_id, int(remaining_pts), ward_arr))
 		#print(dr_list)
 #	dr_list.append(Doctor()) # Todo: fill the dr info
 #	d1 = datetime.date(2021, 9, 1);
@@ -157,11 +157,11 @@ def showDrList():
 		print(dr.get_id(), dr.get_point())
 
 def createCSVoutput(filePos):
-	with open(filePos, 'w', newline='') as csvfile:
+	with open(filePos, 'w', newline='', encoding='UTF8') as csvfile:
 		writer = csv.writer(csvfile)
 
 		#first row
-		id_row = ['ID']
+		id_row = ['Doctor_ID']
 		for dr in dr_list:
 			id_row.append(dr.get_id())
 		writer.writerow(id_row)
